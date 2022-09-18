@@ -3,8 +3,9 @@ package kvservice;
 import common.BaseResponse;
 import common.Env;
 import kvservice.request.KVGetPayloadRequest;
-import kvservice.request.KVSetRequest;
+import kvservice.request.KVPostRequest;
 import kvservice.request.KVgetRequest;
+import kvservice.request.PayLoadKVRequest;
 
 public class KVClient {
     private Env env;
@@ -29,11 +30,15 @@ public class KVClient {
         return new BaseResponse();
     }
 
-    public BaseResponse setV1(KVSetRequest request){
+    public BaseResponse postKVV1(KVPostRequest request){
         return new BaseResponse();
     }
 
     public BaseResponse getPayload(KVGetPayloadRequest request){
+        return new BaseResponse();
+    }
+
+    public BaseResponse postPayload(PayLoadKVRequest request){
         return new BaseResponse();
     }
 }

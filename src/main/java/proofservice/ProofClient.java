@@ -3,7 +3,11 @@ package proofservice;
 import common.BaseRequest;
 import common.BaseResponse;
 import common.Env;
-import kvservice.KVClient;
+import common.constract.Platform;
+import proofservice.request.GetProofRequest;
+import proofservice.request.ModifyProofRequest;
+import proofservice.request.PayLoadProofRequest;
+import proofservice.response.GetProofResponse;
 
 public class ProofClient {
     private Env env;
@@ -24,19 +28,38 @@ public class ProofClient {
         return client;
     }
 
-    public BaseResponse getProofV1(BaseRequest request){
+    /**
+     * get payload for signature and post
+     */
+    public BaseResponse payLoadProofV1(PayLoadProofRequest request){
         return new BaseResponse();
     }
 
-    public BaseResponse postProofV1(BaseRequest request){
+    /**
+     * modified proof
+     */
+    public BaseResponse postProofV1(ModifyProofRequest request){
         return new BaseResponse();
     }
 
-    public BaseResponse existProofV1(BaseRequest request){
+
+    /**
+     * query existed binding
+     */
+    public GetProofResponse getProofV1(GetProofRequest request){
+        return new GetProofResponse();
+    }
+
+
+    public BaseResponse existProofV1(GetProofRequest request){
         return new BaseResponse();
     }
 
-    public BaseResponse getProofChain(BaseRequest request){
-        return new BaseResponse();
+    public GetProofResponse getProofChain(String publicKey, Integer page){
+        return new GetProofResponse();
+    }
+
+    public BaseResponse getProofChainChange(){
+        return null;
     }
 }
