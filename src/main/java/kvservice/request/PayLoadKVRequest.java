@@ -26,8 +26,7 @@ public class PayLoadKVRequest extends BaseRequest {
     @NotNull
     private String identity;
 
+    @NotNull
+    private String patch;
 
-    static class patch {
-
-    }
 }

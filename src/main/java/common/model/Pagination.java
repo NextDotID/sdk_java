@@ -1,4 +1,4 @@
-package common.constract;
+package common.model;
 
 import lombok.Data;
 

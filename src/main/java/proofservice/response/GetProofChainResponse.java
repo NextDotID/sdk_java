@@ -2,13 +2,13 @@ package proofservice.response;
 
 import common.BaseResponse;
 import common.constract.Action;
-import common.constract.Pagination;
+import common.model.Pagination;
 import common.constract.Platform;
 import lombok.Data;
 
 import java.util.List;
 
-public class getProofChainResponse extends BaseResponse {
+public class GetProofChainResponse extends BaseResponse {
     private Pagination pagination;
 
     private List<ProofChain> proofChain;
@@ -28,6 +28,6 @@ public class getProofChainResponse extends BaseResponse {
         /**
          * Arweave transaction ID of this proof
          */
-        private String arweave_id;
+        private String arweaveId;
     }
 }

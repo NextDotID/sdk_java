@@ -1,8 +1,9 @@
 package proofservice.response;
 
 import common.BaseResponse;
-import common.constract.Pagination;
+import common.model.Pagination;
 import common.constract.Platform;
+import common.model.ProofInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class GetProofResponse extends BaseResponse {
     private Pagination pagination;
 
-
+    private List<IdInfo> ids;
 
     @Data
     static class IdInfo{
@@ -28,16 +29,5 @@ public class GetProofResponse extends BaseResponse {
 
     }
 
-
-    @Data
-    static class ProofInfo{
-        private Platform platform;
-        private String identity;
-        private String createAt;
-        private String lastCheckedAt;
-        private Boolean isValid;
-        private String isValidReason;
-
-    }
 
 }

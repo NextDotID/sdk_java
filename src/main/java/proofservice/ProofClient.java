@@ -1,13 +1,12 @@
 package proofservice;
 
-import common.BaseRequest;
 import common.BaseResponse;
 import common.Env;
-import common.constract.Platform;
-import proofservice.request.GetProofRequest;
-import proofservice.request.ModifyProofRequest;
-import proofservice.request.PayLoadProofRequest;
+import proofservice.request.*;
+import proofservice.response.ExistProofResponse;
+import proofservice.response.GetProofChainResponse;
 import proofservice.response.GetProofResponse;
+import proofservice.response.ProofPayloadResponse;
 
 public class ProofClient {
     private Env env;
@@ -29,37 +28,53 @@ public class ProofClient {
     }
 
     /**
-     * get payload for signature and post
+     * get payload for signature
+     *
      */
-    public BaseResponse payLoadProofV1(PayLoadProofRequest request){
-        return new BaseResponse();
+    public ProofPayloadResponse payLoadProofV1(PayLoadProofRequest request){
+        return new ProofPayloadResponse();
     }
 
     /**
      * modified proof
+     * 1.findPrevious proof
+     *
+     * 2.validate proof (platform validate )
+     *
+     * 3.create Proof from platform Validatetor
+     * post v1/proof/post
      */
-    public BaseResponse postProofV1(ModifyProofRequest request){
+    public BaseResponse postProofV1(ProofUploadRequest request){
         return new BaseResponse();
     }
 
-
     /**
      * query existed binding
+     *  get v1/proof
      */
     public GetProofResponse getProofV1(GetProofRequest request){
         return new GetProofResponse();
     }
 
-
-    public BaseResponse existProofV1(GetProofRequest request){
-        return new BaseResponse();
+    /**
+     * get /v1/proof/exist
+     */
+    public ExistProofResponse existProofV1(ExistProofRequest request){
+        return new ExistProofResponse();
     }
 
-    public GetProofResponse getProofChain(String publicKey, Integer page){
-        return new GetProofResponse();
+    /**
+     * get /V1/proofchain
+     */
+    public GetProofChainResponse getProofChain(GetProofRequest request){
+        return new GetProofChainResponse();
     }
 
-    public BaseResponse getProofChainChange(){
-        return null;
+    /**
+     * get /v1/proofchain/changes
+     * @return
+     */
+    public GetProofChainResponse getProofChainChange(GetProofChainChangeRequest request){
+        return new GetProofChainResponse();
     }
 }
