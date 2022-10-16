@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class GetProofChainChangeRequest {
-    @NotNull
-    private Long parameters;
+    @NotNull(message = "platform is required")
+    private Long lastId;
     private Long count;
 }

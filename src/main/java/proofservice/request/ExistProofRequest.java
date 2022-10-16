@@ -7,13 +7,13 @@ import javax.validation.constraints.NotNull;
 @Data
 public class ExistProofRequest {
 
-    @NotNull
+    @NotNull(message = "platform is required")
     private Platform platform;
 
-    @NotNull
+    @NotNull(message = "identity is required")
     private String identity;
 
-    @NotNull
+    @NotNull(message = "publicKey is required")
     private String publicKey;
 
 }

@@ -1,5 +1,6 @@
 package kvservice.response;
 
+import common.BaseResponse;
 import common.constract.Platform;
 import common.model.ProofInfo;
 import lombok.Data;
@@ -8,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
-public class GetKVResponse {
+public class GetKVResponse extends BaseResponse {
     private String avatar;
     private List<Proof> proofs;
 

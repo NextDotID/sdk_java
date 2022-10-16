@@ -1,5 +1,5 @@
 package common.constract;
 
-public enum  Action {
-    create,delete
+public enum Action {
+    create, delete
 }

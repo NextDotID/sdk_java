@@ -1,7 +1,9 @@
 package proofservice.response;
 
 import common.BaseResponse;
+import lombok.Data;
 
+@Data
 public class ProofPayloadResponse extends BaseResponse {
 
     PostContent postContent;

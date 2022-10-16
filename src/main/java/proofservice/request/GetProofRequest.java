@@ -1,7 +1,6 @@
 package proofservice.request;
 
 import common.BaseRequest;
-import common.BaseResponse;
 import common.constract.Platform;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,12 +13,12 @@ public class GetProofRequest extends BaseRequest {
     /**
      * if null will search all platform
      */
-    @NotNull
+    @NotNull(message = "platform is required")
     private Platform platform;
     /**
      * id on platform separateBy  ,
      */
-    @NotNull
+    @NotNull(message = "identity is required")
     private String identity;
     private Integer page;
 }

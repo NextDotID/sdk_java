@@ -11,22 +11,22 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class PayLoadKVRequest extends BaseRequest {
-    @NotNull
+    @NotNull(message = "persona is required")
     private String persona;
 
-    @NotNull
+    @NotNull(message = "avatar is required")
     private String  avatar;
 
     /**
      * next.id it self
      */
-    @NotNull
+    @NotNull(message = "platform is required")
     private String platform;
 
-    @NotNull
+    @NotNull(message = "identity is required")
     private String identity;
 
-    @NotNull
+    @NotNull(message = "patch is required")
     private String patch;
 
 }

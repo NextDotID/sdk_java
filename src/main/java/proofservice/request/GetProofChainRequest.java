@@ -6,8 +6,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class GetProofChainRequest {
-    @NotNull
+    @NotNull(message = "publicKey is required")
     String publicKey;
     Integer page;
-
 }

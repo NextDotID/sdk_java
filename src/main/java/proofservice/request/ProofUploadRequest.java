@@ -21,6 +21,9 @@ public class ProofUploadRequest {
     @NotNull
     private String proofLocation;
 
+    @NotNull
+    private String publicKey;
+
     /**
      * Extra info for specific platform needed
      */
@@ -37,7 +40,7 @@ public class ProofUploadRequest {
     private String createAt;
 
     @Data
-    static class ProofUploadRequestExtra{
+    public static class ProofUploadRequestExtra{
         private String walletSignature;
         private String signature;
     }

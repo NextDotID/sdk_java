@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class BaseResponse {
     Error error;
-
+    public static final BaseResponse empty = new BaseResponse();
     @Data
     static class Error {
         private String errorCode;

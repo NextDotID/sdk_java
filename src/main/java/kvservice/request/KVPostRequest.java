@@ -1,43 +1,47 @@
 package kvservice.request;
 
 
-import kvservice.Patch;
+import common.constract.Platform;
+import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-
+@Data
 public class KVPostRequest {
 
-    @NotNull
+    @NotNull(message = "persona is require")
     private String persona;
 
-    @NotNull
+    @NotNull(message = "avatar is require")
     private String  avatar;
 
     /**
      * next.id it self
      */
-    @NotNull
-    private String platform;
+    @NotNull(message = "platform is require")
+    private Platform platform;
 
-    @NotNull
+    @NotNull(message = "identity is require")
     private String identity;
 
     /**
      * generate by server post POST /v1/kv/payload
      */
-    @NotNull
+    @NotNull(message = "uuid is require")
     private String uuid;
 
-    @NotNull
+    /**
+     * generate by server post POST /v1/kv/payload
+     */
+    @NotNull(message = "createAt is require")
     private String createAt;
 
     /**
      * signature of this request
      */
-    @NotNull
+    @NotNull(message = "signature is require")
     private String signature;
 
-    @NotNull
-    private Patch patch;
+    @NotNull(message = "patch is require")
+    private String patch;
 
 }
