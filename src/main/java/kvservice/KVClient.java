@@ -1,18 +1,43 @@
 package kvservice;
 
-import com.alibaba.fastjson2.JSONObject;
+import com.google.gson.Gson;
 import common.*;
 
 import kvservice.request.KVPostRequest;
 
 import kvservice.request.PayLoadKVRequest;
 import kvservice.response.GetKVResponse;
+import kvservice.response.PostKVPayloadResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
+
+import java.net.URISyntaxException;
 
 import static common.Service.KV_SERVICE;
 
 public class KVClient extends BaseClient {
+    private static final Gson gson = new Gson();
+
+    public KVClient(Env env) {
+        setEnv(env);
+    }
+
+    private static KVClient productClient;
+    private static KVClient stagClient;
+
+    public static KVClient getProdClient() {
+        if (productClient == null) {
+            productClient = new KVClient(Env.KV_PROD);
+        }
+        return productClient;
+    }
+
+    public static KVClient getStagClient() {
+        if (stagClient == null) {
+            stagClient = new KVClient(Env.KV_STAG);
+        }
+        return stagClient;
+    }
 
 
     /**
@@ -22,35 +47,49 @@ public class KVClient extends BaseClient {
         if (StringUtils.isEmpty(avatar)) {
             throw new NextIdException("avatar is require");
         }
-        URIBuilder uriBuilder = new URIBuilder();
-        uriBuilder.setParameter("avatar", avatar);
-        return (GetKVResponse) get(uriBuilder, KV_SERVICE, GetKVResponse.class);
+        URIBuilder uriBuilder;
+        try {
+            uriBuilder = new URIBuilder(getEnv().getUrlPrefix());
+            uriBuilder.setPath("/v1/kv");
+            uriBuilder.setParameter("avatar", avatar);
+            return (GetKVResponse) get(uriBuilder, KV_SERVICE, GetKVResponse.class);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return new GetKVResponse();
     }
 
     /**
      * POST /v1/kv
      */
     public BaseResponse postKVV1(KVPostRequest request) {
-        URIBuilder uriBuilder = new URIBuilder();
-        uriBuilder.setParameter("avatar", request.getAvatar());
-        uriBuilder.setParameter("platform", request.getPlatform().name());
-        uriBuilder.setParameter("identity", request.getIdentity());
-        uriBuilder.setParameter("uuid", request.getUuid());
-        uriBuilder.setParameter("created_at", request.getCreateAt());
-        uriBuilder.setParameter("signature", request.getSignature());
-        uriBuilder.setParameter("patch", request.getPatch());
-        return post(uriBuilder, KV_SERVICE, BaseResponse.class);
+        ParamChecker.checkParam(request);
+        URIBuilder uriBuilder;
+        try {
+            uriBuilder = new URIBuilder(getEnv().getUrlPrefix());
+            String body = gson.toJson(request);
+            uriBuilder.setPath("/v1/kv");
+            return post(uriBuilder, KV_SERVICE, BaseResponse.class, body);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return new BaseResponse();
     }
 
     /**
      * /v1/kv/payload
      */
-    public BaseResponse postKVPayloadV1(PayLoadKVRequest request) {
-        URIBuilder uriBuilder = new URIBuilder();
-        uriBuilder.setParameter("avatar", request.getAvatar());
-        uriBuilder.setParameter("platform", request.getPlatform());
-        uriBuilder.setParameter("identity", request.getIdentity());
-        uriBuilder.setParameter("patch", JSONObject.toJSONString(request.getPatch()));
-        return post(uriBuilder, KV_SERVICE, BaseResponse.class);
+    public PostKVPayloadResponse postKVPayloadV1(PayLoadKVRequest request) {
+        ParamChecker.checkParam(request);
+        URIBuilder uriBuilder;
+        try {
+            uriBuilder = new URIBuilder(getEnv().getUrlPrefix());
+            String body = gson.toJson(request);
+            uriBuilder.setPath("/v1/kv/payload");
+            return (PostKVPayloadResponse) post(uriBuilder, KV_SERVICE, PostKVPayloadResponse.class, body);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return new PostKVPayloadResponse();
     }
 }

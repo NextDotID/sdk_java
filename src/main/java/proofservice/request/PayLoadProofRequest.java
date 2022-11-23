@@ -1,18 +1,20 @@
 package proofservice.request;
 
-
-
+import com.google.gson.annotations.SerializedName;
 import common.constract.Action;
-import common.BaseRequest;
 import common.constract.Platform;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Data
-public class PayLoadProofRequest extends BaseRequest {
+@AllArgsConstructor
+@NoArgsConstructor
+public class PayLoadProofRequest {
     @NotNull(message = "action is required")
     private Action action;
 
@@ -35,5 +37,15 @@ public class PayLoadProofRequest extends BaseRequest {
      * public key of next.id to connect
      */
     @NotNull(message = "publicKey is required")
+    @SerializedName("public_key")
     private String publicKey;
+
+    public String getAction() {
+        return action.name();
+    }
+
+    public String getPlatform() {
+        return platform.name();
+    }
+
 }

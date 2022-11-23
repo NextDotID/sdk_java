@@ -1,8 +1,8 @@
 package proofservice.response;
 
+import com.google.gson.annotations.SerializedName;
 import common.BaseResponse;
 import common.model.Pagination;
-import common.constract.Platform;
 import common.model.ProofInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,12 +17,13 @@ public class GetProofResponse extends BaseResponse {
     private List<IdInfo> ids;
 
     @Data
-    static class IdInfo{
+    static class IdInfo {
         /**
          * avatar pk
          */
         private String avatar;
 
+        @SerializedName("last_arweave_id")
         private String LastArweaveId;
 
         private List<ProofInfo> proofs;

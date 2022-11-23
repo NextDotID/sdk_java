@@ -1,23 +1,15 @@
 package common;
 
+
+import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BaseResponse {
-    Error error;
-    public static final BaseResponse empty = new BaseResponse();
-    @Data
-    static class Error {
-        private String errorCode;
-        private String errorMsg;
-    }
-
-    public BaseResponse error(String errorCode, String errorMsg){
-        return this;
-    }
-    public boolean isError(){
-        return error!= null;
-    }
-
-
+    @SerializedName("message")
+    private String errorMessage;
 }

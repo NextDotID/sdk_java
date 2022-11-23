@@ -1,8 +1,8 @@
 package common;
 
 public enum Service {
-    KV_SERVICE(300,300),
-    PROOF_SERVICE(300,300);
+    KV_SERVICE(10000,10000),
+    PROOF_SERVICE(10000,10000);
 
     private final int connectTimeOut;
     private final int requestTimeOut;

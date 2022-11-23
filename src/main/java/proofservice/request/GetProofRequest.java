@@ -1,15 +1,18 @@
 package proofservice.request;
 
-import common.BaseRequest;
 import common.constract.Platform;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Data
-public class GetProofRequest extends BaseRequest {
+@AllArgsConstructor
+@NoArgsConstructor
+public class GetProofRequest {
     /**
      * if null will search all platform
      */
@@ -21,4 +24,6 @@ public class GetProofRequest extends BaseRequest {
     @NotNull(message = "identity is required")
     private String identity;
     private Integer page;
+
+    private boolean extra;
 }

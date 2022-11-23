@@ -8,5 +8,5 @@ import javax.validation.constraints.NotNull;
 public class GetProofChainChangeRequest {
     @NotNull(message = "platform is required")
     private Long lastId;
-    private Long count;
+    private Integer count;
 }

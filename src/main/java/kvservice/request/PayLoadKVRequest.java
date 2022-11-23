@@ -1,22 +1,17 @@
 package kvservice.request;
-
-
-import common.BaseRequest;
-import common.BaseResponse;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-public class PayLoadKVRequest extends BaseRequest {
-    @NotNull(message = "persona is required")
-    private String persona;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PayLoadKVRequest {
     @NotNull(message = "avatar is required")
     private String  avatar;
-
     /**
      * next.id it self
      */
@@ -27,6 +22,6 @@ public class PayLoadKVRequest extends BaseRequest {
     private String identity;
 
     @NotNull(message = "patch is required")
-    private String patch;
+    private Object patch;
 
 }
